@@ -1,10 +1,8 @@
 name: AURA Deploy to Azure
 
 on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:  # Allow manual trigger
+  # Azure deployment uses production credentials and must be started manually.
+  workflow_dispatch:
 
 env:
   PYTHON_VERSION: "3.11"
