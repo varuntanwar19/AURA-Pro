@@ -10,7 +10,7 @@ import { Download, Filter, BarChart3, FileText, Loader2 } from 'lucide-react';
 import axios from 'axios';
 import useAuraStore from '../../store/auraStore';
 
-const API = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+const API = import.meta.env.VITE_API_URL || '';
 
 const CATEGORIES = ['infrastructure', 'security', 'cost', 'performance', 'compliance'];
 const PROVIDERS = ['all', 'azure', 'aws', 'gcp'];

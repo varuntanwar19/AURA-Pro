@@ -356,6 +356,23 @@ services:
       start_period: 90s
     restart: unless-stopped
 
+  # Optional outbound tunnel for a domain-based demo.
+  # Configure the public hostname in Cloudflare to point at http://aura-frontend:80.
+  # Require a Cloudflare Access login policy before enabling the hostname.
+  cloudflared:
+    profiles: ["tunnel"]
+    image: cloudflare/cloudflared:latest
+    container_name: aura-cloudflared
+    command: ["tunnel", "--no-autoupdate", "run", "--token", "${CLOUDFLARE_TUNNEL_TOKEN:-}"]
+    environment:
+      - CLOUDFLARE_TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN:-}
+    depends_on:
+      aura-frontend:
+        condition: service_healthy
+    networks:
+      - aura-network
+    restart: unless-stopped
+
   # ─────────────────────────────────────────────
   # Minikube Proxy Note:
   # Minikube is intended to run SEPARATELY on the host, not as a Docker service.

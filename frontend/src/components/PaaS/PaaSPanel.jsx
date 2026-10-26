@@ -10,7 +10,7 @@ import axios from 'axios';
 import K8sAutoHeal from './K8sAutoHeal';
 import useAuraStore from '../../store/auraStore';
 
-const API = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+const API = import.meta.env.VITE_API_URL || '';
 
 const MOCK_PAAS = {
   cluster: { name: 'No cluster connected', version: '—', status: 'not-configured', nodes: 0, region: 'local' },

@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Brain, Loader2, ShieldCheck } from 'lucide-react';
 import useAuraStore from '../../store/auraStore';
 
-const API = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+const API = import.meta.env.VITE_API_URL || '';
 
 export default function K8sAutoHeal({ triggered, onComplete }) {
   const { t } = useTranslation();

@@ -6,7 +6,7 @@ import axios from 'axios';
 import useAuraStore from '../../store/auraStore';
 import { useSpeech } from '../../hooks/useSpeech';
 
-const API = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+const API = import.meta.env.VITE_API_URL || '';
 
 const SUGGESTIONS = ['ragChat.suggestions.k8sHealth', 'ragChat.suggestions.terraformWaste', 'ragChat.suggestions.alertsToday', 'ragChat.suggestions.costOptimization'];
 

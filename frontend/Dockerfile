@@ -8,6 +8,11 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
+# The production image serves the API and WebSocket through same-origin Nginx routes.
+# Keep local frontend/.env values from baking localhost URLs into a remote browser build.
+ENV VITE_API_URL="" \
+    VITE_WS_URL=""
+
 # Copy package files first for better layer caching
 COPY package.json ./
 

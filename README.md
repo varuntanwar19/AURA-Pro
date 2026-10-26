@@ -66,8 +66,8 @@
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your_username/aura.git
-cd aura
+git clone https://github.com/varuntanwar19/AURA-Pro.git
+cd AURA-Pro
 ```
 
 ### 2. Configure Environment
@@ -83,7 +83,11 @@ For a pure local POC, the defaults work out of the box.
 
 ### 3. Pull the local Ollama Model
 ```bash
-docker compose up -d ollama
+# For a host Ollama installation:
+ollama pull llama3.2
+
+# Or use the bundled Ollama container:
+docker compose --profile ollama-local up -d ollama
 docker compose exec ollama ollama pull llama3.2
 ```
 
@@ -119,7 +123,18 @@ The RAG page stores submitted text in the local ChromaDB volume. Chat uses local
 
 The project includes real read-only MCP servers using the official Python MCP SDK and Streamable HTTP transport: AKS/Kubernetes `http://localhost:8101/mcp`, Elasticsearch `:8102/mcp`, Terraform `:8103/mcp`, Microsoft Graph `:8104/mcp`, Prometheus `:8105/mcp`, and GitHub `:8106/mcp`. MCP tools do not expose Terraform apply or Kubernetes mutations; apply remains only in the AURA human-approval UI. To enable Kubernetes API inventory, set `KUBERNETES_CONFIG_PATH` in `.env` to the absolute path of your kubeconfig; otherwise the AKS MCP still reads Prometheus and Terraform metadata. Microsoft Graph tools need `M365_TENANT_ID`, `M365_CLIENT_ID`, and `M365_CLIENT_SECRET`, plus admin consent for their listed read-only permissions. GitHub tools require `GITHUB_TOKEN` and `GITHUB_REPO`. AWS/GCP deployment adapters are still not implemented.
 
-Docker ports are bound to `127.0.0.1`. The dashboard is for local access.
+Docker ports are bound to `127.0.0.1`. The dashboard is for local access by default.
+
+### Share a demo through your domain
+
+The frontend uses same-origin `/api` and `/ws` routes so a browser on another PC reaches the AURA backend through Nginx. Do not point a public hostname at AURA until you have an access policy in place: the app includes Terraform plan/apply controls.
+
+1. In Cloudflare, create a named Tunnel and configure its public hostname to route to `http://aura-frontend:80` on the AURA Docker network.
+2. Create a Cloudflare Access application/policy for that hostname and allow only the demo viewers' approved work email addresses. Apply the policy to the whole hostname so `/api/*` and `/ws/*` are protected too.
+3. Copy the tunnel token into the local `.env` as `CLOUDFLARE_TUNNEL_TOKEN`. Never put it in this public repository or send it in chat.
+4. Run `docker compose --profile tunnel up -d cloudflared`. Keep the AURA PC and Docker running during the demo.
+
+This tunnel makes an outbound connection; it does not require a DNS A record to the office public IP or an inbound router port-forward. The domain must be available in the Cloudflare account used to configure the named Tunnel. The app's other service ports remain bound to localhost.
 
 ---
 

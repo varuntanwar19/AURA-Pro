@@ -6,7 +6,7 @@ import { MessageSquare, FileText, Brain, AlertTriangle, CheckCircle, Activity } 
 import axios from 'axios';
 import useAuraStore from '../../store/auraStore';
 
-const API = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+const API = import.meta.env.VITE_API_URL || '';
 
 const MOCK_SAAS = {
   integrations: [],

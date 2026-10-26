@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import useAuraStore from '../store/auraStore';
 
-const WS_BASE = import.meta.env.VITE_WS_URL || 'ws://localhost:8000';
+const WS_BASE = import.meta.env.VITE_WS_URL || `${window.location.protocol === 'https:' ? 'wss:' : 'ws:'}//${window.location.host}`;
 const RECONNECT_INTERVAL = 3000;
 const MAX_RECONNECT_ATTEMPTS = 10;
 

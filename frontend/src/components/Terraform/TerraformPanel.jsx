@@ -7,7 +7,7 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import useAuraStore from '../../store/auraStore';
 
-const API = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+const API = import.meta.env.VITE_API_URL || '';
 const EMPTY = { overProvisioning: [], driftDetection: [], totalSavings: 0, sourceFiles: [] };
 
 export default function TerraformPanel() {
