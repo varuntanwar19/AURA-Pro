@@ -1,0 +1,322 @@
+{
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "iaas": "IaaS Resources",
+    "paas": "PaaS / K8s",
+    "saas": "SaaS Apps",
+    "terraform": "Terraform",
+    "ragChat": "RAG Chat",
+    "reports": "Reports",
+    "workflows": "Agent Workflows",
+    "approvals": "Human Approvals",
+    "database": "RAG & Logs",
+    "collapse": "Collapse sidebar",
+    "expand": "Expand sidebar"
+  },
+  "topbar": {
+    "clouds": {
+      "azure": "Azure",
+      "aws": "AWS",
+      "gcp": "Google Cloud"
+    },
+    "language": "Language",
+    "ttsOn": "TTS On",
+    "ttsOff": "TTS Off",
+    "connected": "Connected",
+    "disconnected": "Disconnected",
+    "user": "User Account"
+  },
+  "dashboard": {
+    "title": "AURA Dashboard",
+    "subtitle": "Multi-Cloud Agentic AI Platform",
+    "kpi": {
+      "totalResources": "Total Resources",
+      "activeAlerts": "Active Alerts",
+      "aiPredictions": "AI Predictions",
+      "workflowsRunning": "Workflows Running"
+    },
+    "cloudHealth": "Multi-Cloud Health",
+    "recentAlerts": "Recent Alerts",
+    "aiPredictions": "AI Predictions",
+    "recentWorkflows": "Recent Workflows",
+    "healthy": "Healthy",
+    "degraded": "Degraded",
+    "critical": "Critical",
+    "noAlerts": "No active alerts",
+    "viewAll": "View All",
+    "confidence": "Confidence"
+  },
+  "iaas": {
+    "title": "IaaS Resources",
+    "tabs": {
+      "vms": "Virtual Machines",
+      "networks": "Networks",
+      "storage": "Storage"
+    },
+    "columns": {
+      "name": "Name",
+      "status": "Status",
+      "region": "Region",
+      "provider": "Provider",
+      "size": "Size",
+      "uptime": "Uptime"
+    },
+    "aiPredictions": "AI Predictions",
+    "predictedFail": "Predicted to Fail",
+    "confidence": "Confidence",
+    "reasoning": "AI Reasoning",
+    "recommendation": "Recommendation",
+    "runAgent": "Run IaaS Agent",
+    "agentRunning": "Agent Running...",
+    "resourceUsage": "Resource Usage Over Time",
+    "noResources": "No resources found for this provider",
+    "analysisTitle": "Local agent analysis",
+    "evidenceConfidence": "Evidence confidence"
+  },
+  "paas": {
+    "title": "PaaS / Kubernetes",
+    "clusterHealth": "Cluster Health",
+    "podStatus": "Pod Status",
+    "metrics": "Prometheus Metrics",
+    "anomalies": "Anomaly Alerts",
+    "autoHeal": "Analyze with local agent",
+    "healing": "Analyzing telemetry...",
+    "analysisTitle": "Cluster analysis",
+    "analyzing": "Analyzing connected metrics...",
+    "approvalQueued": "Proposal added to human review. No Kubernetes change was applied.",
+    "evidenceConfidence": "Evidence confidence",
+    "confidenceBasis": "Evidence availability score; not a calibrated probability.",
+    "mode": { "human-in-the-loop": "Human review", "observe-only": "Observe only" },
+    "status": { "review-required": "Review required", "analysis-only": "Analysis only" },
+    "cpuUsage": "CPU Usage",
+    "memoryUsage": "Memory Usage",
+    "networkIO": "Network I/O",
+    "pods": {
+      "running": "Running",
+      "pending": "Pending",
+      "failed": "Failed",
+      "total": "Total Pods"
+    },
+    "workflow": {
+      "detect": "Detect Anomaly",
+      "prometheus": "Query Prometheus",
+      "elk": "Query ELK Logs",
+      "reasoning": "AI Reasoning",
+      "autoHeal": "Auto-Heal",
+      "humanLoop": "Human Review",
+      "finalize": "Finalize"
+    }
+  },
+  "saas": {
+    "title": "SaaS Applications",
+    "teams": {
+      "title": "Microsoft Teams",
+      "channels": "Channels",
+      "activity": "Activity Metrics",
+      "anomalies": "Anomaly Alerts"
+    },
+    "sharepoint": {
+      "title": "SharePoint",
+      "sites": "Sites",
+      "documents": "Document Activity",
+      "health": "Health Status"
+    },
+    "aiInsights": "AI Insights",
+    "unusualActivity": "Unusual activity detected",
+    "recommendations": "Action Recommendations"
+  },
+  "terraform": {
+    "title": "Terraform Optimization",
+    "overProvisioning": "Over-Provisioning Report",
+    "columns": {
+      "resource": "Resource",
+      "currentSize": "Current Size",
+      "recommended": "Recommended",
+      "wastedCost": "Wasted Cost/mo",
+      "confidence": "Confidence"
+    },
+    "driftDetection": "Drift Detection",
+    "runAgent": "Run Terraform Agent",
+    "recommendations": "Optimization Recommendations",
+    "estimatedSavings": "Estimated Monthly Savings",
+    "applyChanges": "Apply Changes",
+    "requiresApproval": "Requires Human Approval",
+    "stateViewer": "Terraform State Viewer",
+    "driftFound": "Drift Found",
+    "noDrift": "No Drift Detected",
+    "planRun": "Run Terraform plan",
+    "planRunning": "Running plan…",
+    "planTitle": "Terraform plan",
+    "planOnly": "Plan only · Apply performed: no",
+    "sourceTitle": "Terraform source",
+    "noSource": "Terraform source folder is not mounted.",
+    "noMetrics": "No utilization or state comparison data is available yet. Run a Terraform plan; cost optimization requires connected metrics and pricing data.",
+    "azureOnly": "Terraform is Azure-only in this project. The plan refreshes Azure state and may call Azure APIs. No apply is performed here. AKS worker nodes, networking and storage can incur charges.",
+    "reviewPlan": "Send plan for human review"
+  },
+  "ragChat": {
+    "title": "RAG Chat Assistant",
+    "placeholder": "Ask about your cloud infrastructure...",
+    "send": "Send",
+    "you": "You",
+    "assistant": "AURA AI",
+    "sources": "Sources",
+    "confidence": "Confidence",
+    "suggestions": {
+      "k8sHealth": "What's the health of my K8s cluster?",
+      "terraformWaste": "Show Terraform waste report",
+      "alertsToday": "Any critical alerts today?",
+      "costOptimization": "Top cost optimization opportunities?"
+    },
+    "ttsEnabled": "Text-to-speech enabled",
+    "ttsDisabled": "Text-to-speech disabled",
+    "thinking": "AURA is thinking...",
+    "error": "Failed to get response. Please try again.",
+    "retrievalMatch": "Retrieval match",
+    "reason": "Reason",
+    "mode": "Decision mode",
+    "suggestionOnly": "Suggestion only",
+    "offline": "AURA API is unavailable. No live infrastructure data was read and no action was taken."
+  },
+  "reports": {
+    "title": "Reports & Analytics",
+    "categories": {
+      "infrastructure": "Infrastructure",
+      "security": "Security",
+      "cost": "Cost",
+      "performance": "Performance",
+      "compliance": "Compliance"
+    },
+    "columns": {
+      "title": "Report Title",
+      "generated": "Generated",
+      "scope": "Cloud Scope",
+      "download": "Download"
+    },
+    "charts": {
+      "resourceUsage": "Resource Usage by Cloud",
+      "costDistribution": "Cost Distribution",
+      "alertTrends": "Alert Trends",
+      "performance": "Performance Over Time"
+    },
+    "filters": {
+      "provider": "Filter by Provider",
+      "dateRange": "Date Range",
+      "all": "All Providers"
+    },
+    "download": "Download",
+    "generating": "Generating report..."
+  },
+  "workflows": {
+    "title": "Agent Workflows",
+    "nodes": {
+      "routeIntent": "Route Intent",
+      "iaasAgent": "IaaS Agent",
+      "paasAgent": "PaaS Agent",
+      "saasAgent": "SaaS Agent",
+      "terraformAgent": "Terraform Agent",
+      "reasoning": "AI Reasoning",
+      "autoAction": "Auto-Action",
+      "humanLoop": "Human Review",
+      "finalize": "Finalize"
+    },
+    "status": {
+      "pending": "Pending",
+      "running": "Running",
+      "done": "Done",
+      "failed": "Failed"
+    },
+    "history": "Workflow History",
+    "duration": "Duration",
+    "started": "Started",
+    "noWorkflows": "No workflows running"
+  },
+  "approvals": {
+    "title": "Human-in-the-Loop Approvals",
+    "pending": "Pending Approvals",
+    "action": "Proposed Action",
+    "confidence": "Confidence",
+    "reasoning": "AI Reasoning",
+    "impact": "Impact Assessment",
+    "approve": "Approve",
+    "reject": "Reject",
+    "approved": "Approved",
+    "rejected": "Rejected",
+    "priority": {
+      "critical": "Critical",
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    },
+    "noPending": "No pending approvals",
+    "empty": "All approvals are up to date",
+    "safeNote": "A Terraform approval applies only the reviewed saved plan after you type the confirmation phrase. Other agent approvals only record your decision.",
+    "record": "Record approval",
+    "deployWarning": "This will apply the saved Azure Terraform plan. AKS, VM, network, and storage charges are possible; AURA does not calculate a cost estimate.",
+    "confirmPlaceholder": "Type APPLY AZURE PLAN to deploy",
+    "apply": "Approve and apply plan",
+    "applying": "Applying saved plan…",
+    "applySuccess": "Terraform apply completed. Check the Azure resources and billing."
+  },
+  "ragDb": {
+    "title": "RAG Database Console",
+    "chromaStats": "ChromaDB Statistics",
+    "totalDocs": "Total Documents",
+    "collections": "Collections",
+    "embeddingModel": "Embedding Model",
+    "ingest": "Document Ingestion",
+    "dragDrop": "Drag & drop files or paste text below",
+    "pasteText": "Paste document text...",
+    "addDocument": "Add Document",
+    "collectionBrowser": "Collection Browser",
+    "searchTest": "Semantic Search Test",
+    "searchPlaceholder": "Enter a semantic search query...",
+    "search": "Search",
+    "results": "Results",
+    "noResults": "No results found",
+    "score": "Score"
+  },
+  "database": {
+    "title": "Local data services",
+    "subtitle": "RAG vector store and local application storage status",
+    "refresh": "Refresh",
+    "checking": "Checking local services…",
+    "localVolume": "Local Docker volume",
+    "ingestTitle": "Add knowledge to RAG",
+    "ingestHelp": "Text is embedded locally by ChromaDB and stored in its persistent Docker volume.",
+    "sourcePlaceholder": "Source name",
+    "textPlaceholder": "Paste a runbook, Terraform note, or telemetry excerpt (20–20,000 characters)…",
+    "indexing": "Indexing locally…",
+    "add": "Add to RAG index",
+    "indexed": "Indexed document. Total:",
+    "elkTitle": "ELK recent logs",
+    "noLogs": "No Elasticsearch logs are available."
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "retry": "Retry",
+    "save": "Save",
+    "cancel": "Cancel",
+    "close": "Close",
+    "refresh": "Refresh",
+    "noData": "No data available",
+    "lastUpdated": "Last updated",
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive",
+      "running": "Running",
+      "stopped": "Stopped",
+      "healthy": "Healthy",
+      "degraded": "Degraded",
+      "critical": "Critical"
+    },
+    "severity": {
+      "critical": "Critical",
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low",
+      "info": "Info"
+    }
+  }
+}

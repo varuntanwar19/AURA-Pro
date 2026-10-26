@@ -1,0 +1,366 @@
+# AURA - Autonomous Unified Resource Abstraction
+# Local Development Docker Compose
+# NOTE: Minikube runs separately outside Docker Compose.
+#       Start with: minikube start --driver=docker
+
+networks:
+  aura-network:
+    driver: bridge
+
+x-mcp-base: &mcp-base
+  image: aura-backend:local
+  env_file:
+    - .env
+  environment:
+    - PROMETHEUS_URL=${PROMETHEUS_URL:-http://prometheus:9090}
+    - ELASTICSEARCH_URL=${ELASTICSEARCH_URL:-http://elasticsearch:9200}
+    - ELASTICSEARCH_INDEX=${ELASTICSEARCH_INDEX:-aura-*}
+    - TERRAFORM_DIR=/terraform
+  volumes:
+    - ./terraform:/terraform
+  networks:
+    - aura-network
+  restart: unless-stopped
+
+volumes:
+  chroma-data:
+  ollama-data:
+  prometheus-data:
+  grafana-data:
+  elasticsearch-data:
+
+services:
+  # ─────────────────────────────────────────────
+  # AURA Backend (FastAPI)
+  # ─────────────────────────────────────────────
+  aura-backend:
+    image: aura-backend:local
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: aura-backend
+    ports:
+      - "127.0.0.1:8000:8000"
+    env_file:
+      - .env
+    environment:
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+      - CHROMADB_HOST=${CHROMADB_HOST:-chromadb}
+      - CHROMADB_PORT=${CHROMADB_PORT:-8000}
+      - PROMETHEUS_URL=${PROMETHEUS_URL:-http://prometheus:9090}
+      - ELASTICSEARCH_URL=${ELASTICSEARCH_URL:-http://elasticsearch:9200}
+      - ELASTICSEARCH_INDEX=${ELASTICSEARCH_INDEX:-aura-*}
+      - TERRAFORM_DIR=/terraform
+      - ARM_SUBSCRIPTION_ID=${AZURE_SUBSCRIPTION_ID:-}
+      - ARM_CLIENT_ID=${AZURE_CLIENT_ID:-}
+      - ARM_CLIENT_SECRET=${AZURE_CLIENT_SECRET:-}
+      - ARM_TENANT_ID=${AZURE_TENANT_ID:-}
+      - TF_VAR_subscription_id=${AZURE_SUBSCRIPTION_ID:-}
+      - TF_VAR_resource_group_name=${AZURE_RESOURCE_GROUP_NAME:-aura-poc-rg}
+      - TF_VAR_location=${AZURE_LOCATION:-East US}
+      - TF_VAR_cluster_name=${AZURE_CLUSTER_NAME:-aura-aks-poc}
+      - TF_VAR_node_vm_size=${AZURE_NODE_VM_SIZE:-Standard_B2s}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      chromadb:
+        condition: service_started
+    networks:
+      - aura-network
+    volumes:
+      - ./backend:/app
+      - ./terraform:/terraform
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 15s
+    restart: unless-stopped
+
+  mcp-aks:
+    <<: *mcp-base
+    container_name: aura-mcp-aks
+    command: ["python", "-m", "mcpservers.aks_mcp"]
+    environment:
+      - PROMETHEUS_URL=${PROMETHEUS_URL:-http://prometheus:9090}
+      - TERRAFORM_DIR=/terraform
+      - KUBECONFIG=/run/secrets/kubeconfig
+      - MCP_HOST=0.0.0.0
+      - MCP_PORT=8101
+    volumes:
+      - ./terraform:/terraform
+      - ${KUBERNETES_CONFIG_PATH:-./data/kubeconfig}:/run/secrets/kubeconfig:ro
+    ports:
+      - "127.0.0.1:8101:8101"
+    depends_on:
+      prometheus:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "python", "-c", "import socket; socket.create_connection(('127.0.0.1', 8101), timeout=2).close()"]
+      interval: 15s
+      timeout: 3s
+      retries: 3
+
+  mcp-elk:
+    <<: *mcp-base
+    container_name: aura-mcp-elk
+    command: ["python", "-m", "mcpservers.elk_mcp"]
+    environment:
+      - ELASTICSEARCH_URL=${ELASTICSEARCH_URL:-http://elasticsearch:9200}
+      - ELASTICSEARCH_INDEX=${ELASTICSEARCH_INDEX:-aura-*}
+      - MCP_HOST=0.0.0.0
+      - MCP_PORT=8102
+    ports:
+      - "127.0.0.1:8102:8102"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import socket; socket.create_connection(('127.0.0.1', 8102), timeout=2).close()"]
+      interval: 15s
+      timeout: 3s
+      retries: 3
+
+  mcp-terraform:
+    <<: *mcp-base
+    container_name: aura-mcp-terraform
+    command: ["python", "-m", "mcpservers.terraform_mcp"]
+    environment:
+      - TERRAFORM_DIR=/terraform
+      - ARM_SUBSCRIPTION_ID=${AZURE_SUBSCRIPTION_ID:-}
+      - ARM_CLIENT_ID=${AZURE_CLIENT_ID:-}
+      - ARM_CLIENT_SECRET=${AZURE_CLIENT_SECRET:-}
+      - ARM_TENANT_ID=${AZURE_TENANT_ID:-}
+      - TF_VAR_subscription_id=${AZURE_SUBSCRIPTION_ID:-}
+      - TF_VAR_resource_group_name=${AZURE_RESOURCE_GROUP_NAME:-aura-poc-rg}
+      - TF_VAR_location=${AZURE_LOCATION:-East US}
+      - TF_VAR_cluster_name=${AZURE_CLUSTER_NAME:-aura-aks-poc}
+      - TF_VAR_node_vm_size=${AZURE_NODE_VM_SIZE:-Standard_B2s}
+      - MCP_HOST=0.0.0.0
+      - MCP_PORT=8103
+    ports:
+      - "127.0.0.1:8103:8103"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import socket; socket.create_connection(('127.0.0.1', 8103), timeout=2).close()"]
+      interval: 15s
+      timeout: 3s
+      retries: 3
+
+  mcp-saas:
+    <<: *mcp-base
+    container_name: aura-mcp-saas
+    command: ["python", "-m", "mcpservers.saas_mcp"]
+    environment:
+      - M365_TENANT_ID=${M365_TENANT_ID:-${AZURE_TENANT_ID:-}}
+      - M365_CLIENT_ID=${M365_CLIENT_ID:-${AZURE_CLIENT_ID:-}}
+      - M365_CLIENT_SECRET=${M365_CLIENT_SECRET:-${AZURE_CLIENT_SECRET:-}}
+      - MCP_HOST=0.0.0.0
+      - MCP_PORT=8104
+    ports:
+      - "127.0.0.1:8104:8104"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import socket; socket.create_connection(('127.0.0.1', 8104), timeout=2).close()"]
+      interval: 15s
+      timeout: 3s
+      retries: 3
+
+  mcp-prometheus:
+    <<: *mcp-base
+    container_name: aura-mcp-prometheus
+    command: ["python", "-m", "mcpservers.prometheus_mcp"]
+    environment:
+      - PROMETHEUS_URL=${PROMETHEUS_URL:-http://prometheus:9090}
+      - MCP_HOST=0.0.0.0
+      - MCP_PORT=8105
+    ports:
+      - "127.0.0.1:8105:8105"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import socket; socket.create_connection(('127.0.0.1', 8105), timeout=2).close()"]
+      interval: 15s
+      timeout: 3s
+      retries: 3
+
+  mcp-github:
+    <<: *mcp-base
+    container_name: aura-mcp-github
+    command: ["python", "-m", "mcpservers.github_mcp"]
+    environment:
+      - GITHUB_TOKEN=${GITHUB_TOKEN:-}
+      - GITHUB_REPO=${GITHUB_REPO:-}
+      - MCP_HOST=0.0.0.0
+      - MCP_PORT=8106
+    ports:
+      - "127.0.0.1:8106:8106"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import socket; socket.create_connection(('127.0.0.1', 8106), timeout=2).close()"]
+      interval: 15s
+      timeout: 3s
+      retries: 3
+
+  # ─────────────────────────────────────────────
+  # AURA Frontend (React + Vite)
+  # ─────────────────────────────────────────────
+  aura-frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: aura-frontend
+    ports:
+      - "127.0.0.1:3000:80"
+    depends_on:
+      aura-backend:
+        condition: service_healthy
+    networks:
+      - aura-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:80"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+
+  # ─────────────────────────────────────────────
+  # ChromaDB Vector Store
+  # ─────────────────────────────────────────────
+  chromadb:
+    image: chromadb/chroma:latest
+    container_name: aura-chromadb
+    ports:
+      - "127.0.0.1:8001:8000"
+    volumes:
+      - ./data/chroma:/chroma/chroma
+    networks:
+      - aura-network
+    restart: unless-stopped
+
+  # ─────────────────────────────────────────────
+  # Ollama LLM Server
+  # ─────────────────────────────────────────────
+  ollama:
+    profiles: ["ollama-local"]
+    image: ollama/ollama:latest
+    container_name: aura-ollama
+    ports:
+      - "127.0.0.1:11434:11434"
+    volumes:
+      - ./ollama_data:/root/.ollama
+    networks:
+      - aura-network
+    restart: unless-stopped
+    # GPU support (uncomment if NVIDIA GPU available):
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
+
+  # ─────────────────────────────────────────────
+  # Prometheus Monitoring
+  # ─────────────────────────────────────────────
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: aura-prometheus
+    ports:
+      - "127.0.0.1:9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--web.console.libraries=/usr/share/prometheus/console_libraries"
+      - "--web.console.templates=/usr/share/prometheus/consoles"
+    networks:
+      - aura-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:9090/-/healthy"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+  # ─────────────────────────────────────────────
+  # Grafana Dashboards
+  # ─────────────────────────────────────────────
+  grafana:
+    image: grafana/grafana:latest
+    container_name: aura-grafana
+    ports:
+      - "127.0.0.1:3001:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=aura_admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana-data:/var/lib/grafana
+    depends_on:
+      - prometheus
+    networks:
+      - aura-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+  # ─────────────────────────────────────────────
+  # Elasticsearch (Single-Node)
+  # ─────────────────────────────────────────────
+  elasticsearch:
+    profiles: ["elk-local"]
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.0
+    container_name: aura-elasticsearch
+    ports:
+      - "127.0.0.1:9200:9200"
+      - "127.0.0.1:9300:9300"
+    environment:
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - xpack.security.enrollment.enabled=false
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    networks:
+      - aura-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9200/_cluster/health"]
+      interval: 30s
+      timeout: 15s
+      retries: 10
+      start_period: 60s
+    restart: unless-stopped
+
+  # ─────────────────────────────────────────────
+  # Kibana
+  # ─────────────────────────────────────────────
+  kibana:
+    profiles: ["elk-local"]
+    image: docker.elastic.co/kibana/kibana:8.11.0
+    container_name: aura-kibana
+    ports:
+      - "127.0.0.1:5601:5601"
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    networks:
+      - aura-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5601/api/status"]
+      interval: 30s
+      timeout: 15s
+      retries: 10
+      start_period: 90s
+    restart: unless-stopped
+
+  # ─────────────────────────────────────────────
+  # Minikube Proxy Note:
+  # Minikube is intended to run SEPARATELY on the host, not as a Docker service.
+  # Start it with: minikube start --driver=docker
+  # To expose the Kubernetes API to containers in aura-network:
+  #   kubectl proxy --address='0.0.0.0' --accept-hosts='.*'
+  # The backend will connect to the host via host.docker.internal:8001
+  # ─────────────────────────────────────────────

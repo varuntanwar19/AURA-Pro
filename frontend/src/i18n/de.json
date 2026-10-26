@@ -1,0 +1,322 @@
+{
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "iaas": "IaaS-Ressourcen",
+    "paas": "PaaS / K8s",
+    "saas": "SaaS-Anwendungen",
+    "terraform": "Terraform",
+    "ragChat": "RAG-Chat",
+    "reports": "Berichte",
+    "workflows": "KI-Workflows",
+    "approvals": "Menschliche Genehmigungen",
+    "database": "RAG und Protokolle",
+    "collapse": "Seitenleiste einklappen",
+    "expand": "Seitenleiste ausklappen"
+  },
+  "topbar": {
+    "clouds": {
+      "azure": "Azure",
+      "aws": "AWS",
+      "gcp": "Google Cloud"
+    },
+    "language": "Sprache",
+    "ttsOn": "TTS ein",
+    "ttsOff": "TTS aus",
+    "connected": "Verbunden",
+    "disconnected": "Getrennt",
+    "user": "Benutzerkonto"
+  },
+  "dashboard": {
+    "title": "AURA Dashboard",
+    "subtitle": "Multi-Cloud Agentische KI-Plattform",
+    "kpi": {
+      "totalResources": "Gesamtressourcen",
+      "activeAlerts": "Aktive Warnmeldungen",
+      "aiPredictions": "KI-Vorhersagen",
+      "workflowsRunning": "Laufende Workflows"
+    },
+    "cloudHealth": "Multi-Cloud-Gesundheit",
+    "recentAlerts": "Aktuelle Warnungen",
+    "aiPredictions": "KI-Vorhersagen",
+    "recentWorkflows": "Aktuelle Workflows",
+    "healthy": "Gesund",
+    "degraded": "Beeinträchtigt",
+    "critical": "Kritisch",
+    "noAlerts": "Keine aktiven Warnungen",
+    "viewAll": "Alle anzeigen",
+    "confidence": "Konfidenz"
+  },
+  "iaas": {
+    "title": "IaaS-Ressourcen",
+    "tabs": {
+      "vms": "Virtuelle Maschinen",
+      "networks": "Netzwerke",
+      "storage": "Speicher"
+    },
+    "columns": {
+      "name": "Name",
+      "status": "Status",
+      "region": "Region",
+      "provider": "Anbieter",
+      "size": "Größe",
+      "uptime": "Betriebszeit"
+    },
+    "aiPredictions": "KI-Vorhersagen",
+    "predictedFail": "Vorhergesagter Ausfall",
+    "confidence": "Konfidenz",
+    "reasoning": "KI-Begründung",
+    "recommendation": "Empfehlung",
+    "runAgent": "IaaS-Agent starten",
+    "agentRunning": "Agent läuft...",
+    "resourceUsage": "Ressourcennutzung",
+    "noResources": "Keine Ressourcen gefunden",
+    "analysisTitle": "Analyse des lokalen Agenten",
+    "evidenceConfidence": "Belegkonfidenz"
+  },
+  "paas": {
+    "title": "PaaS / Kubernetes",
+    "clusterHealth": "Cluster-Gesundheit",
+    "podStatus": "Pod-Status",
+    "metrics": "Prometheus-Metriken",
+    "anomalies": "Anomaliewarnungen",
+    "autoHeal": "Mit lokalem Agenten analysieren",
+    "healing": "Telemetrie wird analysiert…",
+    "analysisTitle": "Clusteranalyse",
+    "analyzing": "Verbundene Metriken werden analysiert…",
+    "approvalQueued": "Vorschlag zur menschlichen Prüfung gesendet. Kubernetes wurde nicht geändert.",
+    "evidenceConfidence": "Belegkonfidenz",
+    "confidenceBasis": "Bewertung der Belegverfügbarkeit, keine kalibrierte Wahrscheinlichkeit.",
+    "mode": { "human-in-the-loop": "Menschliche Prüfung", "observe-only": "Nur beobachten" },
+    "status": { "review-required": "Prüfung erforderlich", "analysis-only": "Nur Analyse" },
+    "cpuUsage": "CPU-Auslastung",
+    "memoryUsage": "Speicherauslastung",
+    "networkIO": "Netzwerk E/A",
+    "pods": {
+      "running": "Läuft",
+      "pending": "Ausstehend",
+      "failed": "Fehlgeschlagen",
+      "total": "Pods gesamt"
+    },
+    "workflow": {
+      "detect": "Anomalie erkennen",
+      "prometheus": "Prometheus abfragen",
+      "elk": "ELK-Protokolle abfragen",
+      "reasoning": "KI-Begründung",
+      "autoHeal": "Auto-Heilung",
+      "humanLoop": "Menschliche Überprüfung",
+      "finalize": "Abschließen"
+    }
+  },
+  "saas": {
+    "title": "SaaS-Anwendungen",
+    "teams": {
+      "title": "Microsoft Teams",
+      "channels": "Kanäle",
+      "activity": "Aktivitätsmetriken",
+      "anomalies": "Anomaliewarnungen"
+    },
+    "sharepoint": {
+      "title": "SharePoint",
+      "sites": "Websites",
+      "documents": "Dokumentaktivität",
+      "health": "Gesundheitsstatus"
+    },
+    "aiInsights": "KI-Erkenntnisse",
+    "unusualActivity": "Ungewöhnliche Aktivität erkannt",
+    "recommendations": "Handlungsempfehlungen"
+  },
+  "terraform": {
+    "title": "Terraform-Optimierung",
+    "overProvisioning": "Überprovisionierungsbericht",
+    "columns": {
+      "resource": "Ressource",
+      "currentSize": "Aktuelle Größe",
+      "recommended": "Empfohlen",
+      "wastedCost": "Verschwendete Kosten/Monat",
+      "confidence": "Konfidenz"
+    },
+    "driftDetection": "Drift-Erkennung",
+    "runAgent": "Terraform-Agent starten",
+    "recommendations": "Optimierungsempfehlungen",
+    "estimatedSavings": "Geschätzte monatliche Einsparungen",
+    "applyChanges": "Änderungen anwenden",
+    "requiresApproval": "Erfordert menschliche Genehmigung",
+    "stateViewer": "Terraform-Statusanzeige",
+    "driftFound": "Drift erkannt",
+    "noDrift": "Kein Drift erkannt",
+    "planRun": "Terraform-Plan ausführen",
+    "planRunning": "Plan wird ausgeführt…",
+    "planTitle": "Terraform-Plan",
+    "planOnly": "Nur Plan · Apply ausgeführt: nein",
+    "sourceTitle": "Terraform-Quellcode",
+    "noSource": "Der Terraform-Quellordner ist nicht eingebunden.",
+    "noMetrics": "Es sind keine Nutzungs- oder Zustandsvergleichsdaten verfügbar. Für die Kostenoptimierung sind verbundene Metriken und Preise erforderlich.",
+    "azureOnly": "Dieses Projekt verwendet Terraform für Azure. Der Plan aktualisiert den Azure-Status und kann Azure-APIs aufrufen. Hier wird kein Apply ausgeführt. AKS-Worker, Netzwerk und Speicher können Kosten verursachen.",
+    "reviewPlan": "Plan zur menschlichen Prüfung senden"
+  },
+  "ragChat": {
+    "title": "RAG-Chat-Assistent",
+    "placeholder": "Fragen Sie nach Ihrer Cloud-Infrastruktur...",
+    "send": "Senden",
+    "you": "Sie",
+    "assistant": "AURA KI",
+    "sources": "Quellen",
+    "confidence": "Konfidenz",
+    "suggestions": {
+      "k8sHealth": "Wie ist die Gesundheit meines K8s-Clusters?",
+      "terraformWaste": "Terraform-Verschwedungsbericht anzeigen",
+      "alertsToday": "Kritische Warnungen heute?",
+      "costOptimization": "Top-Kostenoptimierungsmöglichkeiten?"
+    },
+    "ttsEnabled": "Text-to-Speech aktiviert",
+    "ttsDisabled": "Text-to-Speech deaktiviert",
+    "thinking": "AURA denkt nach...",
+    "error": "Antwort fehlgeschlagen. Bitte versuchen Sie es erneut.",
+    "retrievalMatch": "Quellenübereinstimmung",
+    "reason": "Begründung",
+    "mode": "Entscheidungsmodus",
+    "suggestionOnly": "Nur Vorschlag",
+    "offline": "Die AURA-API ist nicht verfügbar. Es wurden keine Live-Infrastrukturdaten gelesen und keine Aktion ausgeführt."
+  },
+  "reports": {
+    "title": "Berichte und Analysen",
+    "categories": {
+      "infrastructure": "Infrastruktur",
+      "security": "Sicherheit",
+      "cost": "Kosten",
+      "performance": "Leistung",
+      "compliance": "Compliance"
+    },
+    "columns": {
+      "title": "Berichtstitel",
+      "generated": "Erstellt",
+      "scope": "Cloud-Umfang",
+      "download": "Herunterladen"
+    },
+    "charts": {
+      "resourceUsage": "Ressourcennutzung nach Cloud",
+      "costDistribution": "Kostenverteilung",
+      "alertTrends": "Warnungstrends",
+      "performance": "Leistung im Zeitverlauf"
+    },
+    "filters": {
+      "provider": "Nach Anbieter filtern",
+      "dateRange": "Datumsbereich",
+      "all": "Alle Anbieter"
+    },
+    "download": "Herunterladen",
+    "generating": "Bericht wird generiert..."
+  },
+  "workflows": {
+    "title": "KI-Workflows",
+    "nodes": {
+      "routeIntent": "Intent-Routing",
+      "iaasAgent": "IaaS-Agent",
+      "paasAgent": "PaaS-Agent",
+      "saasAgent": "SaaS-Agent",
+      "terraformAgent": "Terraform-Agent",
+      "reasoning": "KI-Begründung",
+      "autoAction": "Automatische Aktion",
+      "humanLoop": "Menschliche Überprüfung",
+      "finalize": "Abschließen"
+    },
+    "status": {
+      "pending": "Ausstehend",
+      "running": "Läuft",
+      "done": "Erledigt",
+      "failed": "Fehlgeschlagen"
+    },
+    "history": "Workflow-Verlauf",
+    "duration": "Dauer",
+    "started": "Gestartet",
+    "noWorkflows": "Keine laufenden Workflows"
+  },
+  "approvals": {
+    "title": "Menschliche Genehmigungen",
+    "pending": "Ausstehende Genehmigungen",
+    "action": "Vorgeschlagene Aktion",
+    "confidence": "Konfidenz",
+    "reasoning": "KI-Begründung",
+    "impact": "Folgenabschätzung",
+    "approve": "Genehmigen",
+    "reject": "Ablehnen",
+    "approved": "Genehmigt",
+    "rejected": "Abgelehnt",
+    "priority": {
+      "critical": "Kritisch",
+      "high": "Hoch",
+      "medium": "Mittel",
+      "low": "Niedrig"
+    },
+    "noPending": "Keine ausstehenden Genehmigungen",
+    "empty": "Alle Genehmigungen sind auf dem neuesten Stand",
+    "safeNote": "Eine Terraform-Genehmigung wendet den gespeicherten Plan erst nach Eingabe der Bestätigungsphrase an. Andere Agent-Genehmigungen speichern nur Ihre Entscheidung.",
+    "record": "Genehmigung speichern",
+    "deployWarning": "Dadurch wird der gespeicherte Azure-Terraform-Plan angewendet. Für AKS, VMs, Netzwerk und Speicher können Gebühren anfallen; AURA berechnet keine Kostenschätzung.",
+    "confirmPlaceholder": "APPLY AZURE PLAN zum Bereitstellen eingeben",
+    "apply": "Plan genehmigen und anwenden",
+    "applying": "Gespeicherter Plan wird angewendet…",
+    "applySuccess": "Terraform Apply abgeschlossen. Prüfen Sie Azure-Ressourcen und Abrechnung."
+  },
+  "ragDb": {
+    "title": "RAG-Datenbank-Konsole",
+    "chromaStats": "ChromaDB-Statistiken",
+    "totalDocs": "Gesamtdokumente",
+    "collections": "Sammlungen",
+    "embeddingModel": "Embedding-Modell",
+    "ingest": "Dokumentenaufnahme",
+    "dragDrop": "Dateien ablegen oder Text einfügen",
+    "pasteText": "Dokumenttext einfügen...",
+    "addDocument": "Dokument hinzufügen",
+    "collectionBrowser": "Sammlungsbrowser",
+    "searchTest": "Semantischer Suchtest",
+    "searchPlaceholder": "Semantische Suchanfrage eingeben...",
+    "search": "Suchen",
+    "results": "Ergebnisse",
+    "noResults": "Keine Ergebnisse gefunden",
+    "score": "Bewertung"
+  },
+  "database": {
+    "title": "Lokale Datendienste",
+    "subtitle": "Status des RAG-Vektorspeichers und des lokalen Anwendungsspeichers",
+    "refresh": "Aktualisieren",
+    "checking": "Lokale Dienste werden geprüft…",
+    "localVolume": "Lokales Docker-Volume",
+    "ingestTitle": "Wissen zu RAG hinzufügen",
+    "ingestHelp": "ChromaDB vektorisiert den Text lokal und speichert ihn im persistenten Docker-Volume.",
+    "sourcePlaceholder": "Quellenname",
+    "textPlaceholder": "Runbook, Terraform-Notiz oder Telemetrieauszug einfügen (20–20.000 Zeichen)…",
+    "indexing": "Lokale Indexierung…",
+    "add": "Zum RAG-Index hinzufügen",
+    "indexed": "Dokument indexiert. Gesamt:",
+    "elkTitle": "Aktuelle ELK-Protokolle",
+    "noLogs": "Keine Elasticsearch-Protokolle verfügbar."
+  },
+  "common": {
+    "loading": "Wird geladen...",
+    "error": "Fehler",
+    "retry": "Wiederholen",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "close": "Schließen",
+    "refresh": "Aktualisieren",
+    "noData": "Keine Daten verfügbar",
+    "lastUpdated": "Zuletzt aktualisiert",
+    "status": {
+      "active": "Aktiv",
+      "inactive": "Inaktiv",
+      "running": "Läuft",
+      "stopped": "Gestoppt",
+      "healthy": "Gesund",
+      "degraded": "Beeinträchtigt",
+      "critical": "Kritisch"
+    },
+    "severity": {
+      "critical": "Kritisch",
+      "high": "Hoch",
+      "medium": "Mittel",
+      "low": "Niedrig",
+      "info": "Info"
+    }
+  }
+}

@@ -1,0 +1,57 @@
+global:
+  scrape_interval: 15s       # How often to scrape targets
+  evaluation_interval: 15s   # How often to evaluate rules
+  scrape_timeout: 10s
+
+# Alertmanager configuration (optional for POC)
+# alerting:
+#   alertmanagers:
+#     - static_configs:
+#         - targets: []
+
+# Rule files (optional for POC)
+# rule_files:
+#   - "alert_rules.yml"
+
+scrape_configs:
+  # ── AURA Backend Metrics ───────────────────────────────
+  - job_name: "aura-backend"
+    metrics_path: /metrics
+    static_configs:
+      - targets: ["aura-backend:8000"]
+        labels:
+          service: "aura-backend"
+          environment: "local"
+
+  # ── Prometheus Self-Monitoring ─────────────────────────
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  # ── Kubernetes Pod Discovery ───────────────────────────
+  # Configure when Kubernetes (Minikube) is available.
+  # Uncomment and adjust role_arn / cluster info as needed.
+  - job_name: "kubernetes-pods"
+    # kubernetes_sd_configs:   # Uncomment when K8s is reachable from Prometheus
+    #   - role: pod
+    #     namespaces:
+    #       names:
+    #         - default
+    #         - aura
+    static_configs:
+      - targets: []  # Placeholder – replace with kubernetes_sd_configs above
+
+  # ── Node Exporter (Host Metrics) ──────────────────────
+  # Uncomment if you add node-exporter to docker-compose
+  # - job_name: "node-exporter"
+  #   static_configs:
+  #     - targets: ["node-exporter:9100"]
+
+  # ── ChromaDB ──────────────────────────────────────────
+  # ChromaDB does not expose Prometheus metrics by default.
+  # Monitor via Elasticsearch or custom instrumentation.
+
+  # ── Ollama ────────────────────────────────────────────
+  # - job_name: "ollama"
+  #   static_configs:
+  #     - targets: ["ollama:11434"]

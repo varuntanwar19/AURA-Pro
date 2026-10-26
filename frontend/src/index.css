@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg: #080d1a;
+    --color-surface: #0d1528;
+    --color-card: #111d35;
+    --color-border: #1e3058;
+    --color-cyan: #06b6d4;
+    --color-purple: #7c3aed;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-aura-card/80 backdrop-blur-glass border border-aura-border rounded-xl shadow-glass;
+  }
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300 hover:shadow-card-hover hover:border-aura-cyan/30;
+  }
+  .btn-primary {
+    @apply bg-gradient-cyan text-white font-semibold px-4 py-2 rounded-lg
+           hover:opacity-90 active:scale-95 transition-all duration-200
+           shadow-cyan-glow hover:shadow-cyan-glow;
+  }
+  .btn-secondary {
+    @apply bg-aura-surface border border-aura-border text-aura-text font-medium px-4 py-2 rounded-lg
+           hover:border-aura-cyan/50 hover:bg-aura-card transition-all duration-200;
+  }
+  .btn-danger {
+    @apply bg-aura-danger/20 border border-aura-danger/50 text-aura-danger font-medium px-4 py-2 rounded-lg
+           hover:bg-aura-danger/30 transition-all duration-200;
+  }
+  .badge-success {
+    @apply inline-flex items-center gap-1 bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 text-xs font-semibold px-2 py-0.5 rounded-full;
+  }
+  .badge-warning {
+    @apply inline-flex items-center gap-1 bg-amber-500/15 text-amber-400 border border-amber-500/30 text-xs font-semibold px-2 py-0.5 rounded-full;
+  }
+  .badge-danger {
+    @apply inline-flex items-center gap-1 bg-red-500/15 text-red-400 border border-red-500/30 text-xs font-semibold px-2 py-0.5 rounded-full;
+  }
+  .badge-info {
+    @apply inline-flex items-center gap-1 bg-cyan-500/15 text-cyan-400 border border-cyan-500/30 text-xs font-semibold px-2 py-0.5 rounded-full;
+  }
+  .badge-purple {
+    @apply inline-flex items-center gap-1 bg-purple-500/15 text-purple-400 border border-purple-500/30 text-xs font-semibold px-2 py-0.5 rounded-full;
+  }
+  .section-title {
+    @apply text-lg font-bold text-aura-text tracking-tight;
+  }
+  .label-text {
+    @apply text-xs font-semibold text-aura-subtext uppercase tracking-widest;
+  }
+  .input-field {
+    @apply w-full bg-aura-surface border border-aura-border rounded-lg px-3 py-2 text-aura-text
+           placeholder-aura-muted focus:outline-none focus:border-aura-cyan/60 focus:ring-1 focus:ring-aura-cyan/30
+           transition-all duration-200;
+  }
+}
+
+@layer utilities {
+  .text-gradient-cyan {
+    @apply bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent;
+  }
+  .text-gradient-purple {
+    @apply bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent;
+  }
+  .text-gradient-aura {
+    @apply bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent;
+  }
+}

@@ -1,0 +1,322 @@
+{
+  "sidebar": {
+    "dashboard": "Tableau de bord",
+    "iaas": "Ressources IaaS",
+    "paas": "PaaS / K8s",
+    "saas": "Applications SaaS",
+    "terraform": "Terraform",
+    "ragChat": "Chat RAG",
+    "reports": "Rapports",
+    "workflows": "Flux de travail IA",
+    "approvals": "Approbations humaines",
+    "database": "RAG et journaux",
+    "collapse": "Réduire la barre latérale",
+    "expand": "Développer la barre latérale"
+  },
+  "topbar": {
+    "clouds": {
+      "azure": "Azure",
+      "aws": "AWS",
+      "gcp": "Google Cloud"
+    },
+    "language": "Langue",
+    "ttsOn": "TTS activé",
+    "ttsOff": "TTS désactivé",
+    "connected": "Connecté",
+    "disconnected": "Déconnecté",
+    "user": "Compte utilisateur"
+  },
+  "dashboard": {
+    "title": "Tableau de bord AURA",
+    "subtitle": "Plateforme IA multi-cloud agentique",
+    "kpi": {
+      "totalResources": "Total des ressources",
+      "activeAlerts": "Alertes actives",
+      "aiPredictions": "Prédictions IA",
+      "workflowsRunning": "Flux en cours"
+    },
+    "cloudHealth": "Santé multi-cloud",
+    "recentAlerts": "Alertes récentes",
+    "aiPredictions": "Prédictions IA",
+    "recentWorkflows": "Flux récents",
+    "healthy": "Sain",
+    "degraded": "Dégradé",
+    "critical": "Critique",
+    "noAlerts": "Aucune alerte active",
+    "viewAll": "Voir tout",
+    "confidence": "Confiance"
+  },
+  "iaas": {
+    "title": "Ressources IaaS",
+    "tabs": {
+      "vms": "Machines virtuelles",
+      "networks": "Réseaux",
+      "storage": "Stockage"
+    },
+    "columns": {
+      "name": "Nom",
+      "status": "État",
+      "region": "Région",
+      "provider": "Fournisseur",
+      "size": "Taille",
+      "uptime": "Disponibilité"
+    },
+    "aiPredictions": "Prédictions IA",
+    "predictedFail": "Prévu pour échouer",
+    "confidence": "Confiance",
+    "reasoning": "Raisonnement IA",
+    "recommendation": "Recommandation",
+    "runAgent": "Lancer l'agent IaaS",
+    "agentRunning": "Agent en cours...",
+    "resourceUsage": "Utilisation des ressources",
+    "noResources": "Aucune ressource trouvée",
+    "analysisTitle": "Analyse de l’agent local",
+    "evidenceConfidence": "Confiance des preuves"
+  },
+  "paas": {
+    "title": "PaaS / Kubernetes",
+    "clusterHealth": "Santé du cluster",
+    "podStatus": "État des pods",
+    "metrics": "Métriques Prometheus",
+    "anomalies": "Alertes d'anomalies",
+    "autoHeal": "Analyser avec l’agent local",
+    "healing": "Analyse de la télémétrie…",
+    "analysisTitle": "Analyse du cluster",
+    "analyzing": "Analyse des métriques connectées…",
+    "approvalQueued": "Proposition envoyée à la révision humaine. Aucun changement Kubernetes n’a été appliqué.",
+    "evidenceConfidence": "Confiance des preuves",
+    "confidenceBasis": "Score fondé sur la disponibilité des preuves, pas une probabilité calibrée.",
+    "mode": { "human-in-the-loop": "Révision humaine", "observe-only": "Observation uniquement" },
+    "status": { "review-required": "Révision requise", "analysis-only": "Analyse uniquement" },
+    "cpuUsage": "Utilisation CPU",
+    "memoryUsage": "Utilisation mémoire",
+    "networkIO": "E/S réseau",
+    "pods": {
+      "running": "En cours",
+      "pending": "En attente",
+      "failed": "Échoué",
+      "total": "Total pods"
+    },
+    "workflow": {
+      "detect": "Détecter l'anomalie",
+      "prometheus": "Interroger Prometheus",
+      "elk": "Interroger les journaux ELK",
+      "reasoning": "Raisonnement IA",
+      "autoHeal": "Auto-guérison",
+      "humanLoop": "Révision humaine",
+      "finalize": "Finaliser"
+    }
+  },
+  "saas": {
+    "title": "Applications SaaS",
+    "teams": {
+      "title": "Microsoft Teams",
+      "channels": "Canaux",
+      "activity": "Métriques d'activité",
+      "anomalies": "Alertes d'anomalies"
+    },
+    "sharepoint": {
+      "title": "SharePoint",
+      "sites": "Sites",
+      "documents": "Activité documentaire",
+      "health": "État de santé"
+    },
+    "aiInsights": "Insights IA",
+    "unusualActivity": "Activité inhabituelle détectée",
+    "recommendations": "Recommandations d'action"
+  },
+  "terraform": {
+    "title": "Optimisation Terraform",
+    "overProvisioning": "Rapport de sur-provisionnement",
+    "columns": {
+      "resource": "Ressource",
+      "currentSize": "Taille actuelle",
+      "recommended": "Recommandé",
+      "wastedCost": "Coût gaspillé/mois",
+      "confidence": "Confiance"
+    },
+    "driftDetection": "Détection de dérive",
+    "runAgent": "Lancer l'agent Terraform",
+    "recommendations": "Recommandations d'optimisation",
+    "estimatedSavings": "Économies mensuelles estimées",
+    "applyChanges": "Appliquer les modifications",
+    "requiresApproval": "Nécessite une approbation humaine",
+    "stateViewer": "Visionneuse d'état Terraform",
+    "driftFound": "Dérive détectée",
+    "noDrift": "Aucune dérive détectée",
+    "planRun": "Exécuter le plan Terraform",
+    "planRunning": "Plan en cours…",
+    "planTitle": "Plan Terraform",
+    "planOnly": "Plan uniquement · Application effectuée : non",
+    "sourceTitle": "Code Terraform",
+    "noSource": "Le dossier source Terraform n’est pas monté.",
+    "noMetrics": "Aucune donnée d’utilisation ou de comparaison d’état n’est disponible. L’optimisation des coûts nécessite des métriques et des tarifs connectés.",
+    "azureOnly": "Terraform cible Azure dans ce projet. Le plan actualise l’état Azure et peut appeler les API Azure. Aucune application n’est effectuée ici. Les nœuds AKS, le réseau et le stockage peuvent être facturés.",
+    "reviewPlan": "Envoyer le plan à une révision humaine"
+  },
+  "ragChat": {
+    "title": "Assistant Chat RAG",
+    "placeholder": "Posez une question sur votre infrastructure cloud...",
+    "send": "Envoyer",
+    "you": "Vous",
+    "assistant": "AURA IA",
+    "sources": "Sources",
+    "confidence": "Confiance",
+    "suggestions": {
+      "k8sHealth": "Quelle est la santé de mon cluster K8s ?",
+      "terraformWaste": "Afficher le rapport de gaspillage Terraform",
+      "alertsToday": "Des alertes critiques aujourd'hui ?",
+      "costOptimization": "Meilleures opportunités d'optimisation des coûts ?"
+    },
+    "ttsEnabled": "Synthèse vocale activée",
+    "ttsDisabled": "Synthèse vocale désactivée",
+    "thinking": "AURA réfléchit...",
+    "error": "Échec de la réponse. Veuillez réessayer.",
+    "retrievalMatch": "Pertinence des sources",
+    "reason": "Motif",
+    "mode": "Mode de décision",
+    "suggestionOnly": "Suggestion uniquement",
+    "offline": "L’API AURA est indisponible. Aucune donnée d’infrastructure en direct n’a été lue et aucune action n’a été effectuée."
+  },
+  "reports": {
+    "title": "Rapports et analyses",
+    "categories": {
+      "infrastructure": "Infrastructure",
+      "security": "Sécurité",
+      "cost": "Coût",
+      "performance": "Performance",
+      "compliance": "Conformité"
+    },
+    "columns": {
+      "title": "Titre du rapport",
+      "generated": "Généré le",
+      "scope": "Portée cloud",
+      "download": "Télécharger"
+    },
+    "charts": {
+      "resourceUsage": "Utilisation des ressources par cloud",
+      "costDistribution": "Répartition des coûts",
+      "alertTrends": "Tendances des alertes",
+      "performance": "Performance au fil du temps"
+    },
+    "filters": {
+      "provider": "Filtrer par fournisseur",
+      "dateRange": "Plage de dates",
+      "all": "Tous les fournisseurs"
+    },
+    "download": "Télécharger",
+    "generating": "Génération du rapport..."
+  },
+  "workflows": {
+    "title": "Flux de travail IA",
+    "nodes": {
+      "routeIntent": "Routage d'intention",
+      "iaasAgent": "Agent IaaS",
+      "paasAgent": "Agent PaaS",
+      "saasAgent": "Agent SaaS",
+      "terraformAgent": "Agent Terraform",
+      "reasoning": "Raisonnement IA",
+      "autoAction": "Action automatique",
+      "humanLoop": "Révision humaine",
+      "finalize": "Finaliser"
+    },
+    "status": {
+      "pending": "En attente",
+      "running": "En cours",
+      "done": "Terminé",
+      "failed": "Échoué"
+    },
+    "history": "Historique des flux",
+    "duration": "Durée",
+    "started": "Démarré",
+    "noWorkflows": "Aucun flux en cours"
+  },
+  "approvals": {
+    "title": "Approbations humaines",
+    "pending": "Approbations en attente",
+    "action": "Action proposée",
+    "confidence": "Confiance",
+    "reasoning": "Raisonnement IA",
+    "impact": "Évaluation d'impact",
+    "approve": "Approuver",
+    "reject": "Rejeter",
+    "approved": "Approuvé",
+    "rejected": "Rejeté",
+    "priority": {
+      "critical": "Critique",
+      "high": "Élevé",
+      "medium": "Moyen",
+      "low": "Faible"
+    },
+    "noPending": "Aucune approbation en attente",
+    "empty": "Toutes les approbations sont à jour",
+    "safeNote": "Une approbation Terraform applique le plan enregistré après la saisie de la phrase de confirmation. Les autres approbations enregistrent uniquement votre décision.",
+    "record": "Enregistrer l’approbation",
+    "deployWarning": "Cette action applique le plan Terraform Azure enregistré. AKS, les VM, le réseau et le stockage peuvent être facturés ; AURA ne calcule pas de coût estimé.",
+    "confirmPlaceholder": "Saisissez APPLY AZURE PLAN pour déployer",
+    "apply": "Approuver et appliquer le plan",
+    "applying": "Application du plan enregistré…",
+    "applySuccess": "Application Terraform terminée. Vérifiez les ressources et la facturation Azure."
+  },
+  "ragDb": {
+    "title": "Console de base de données RAG",
+    "chromaStats": "Statistiques ChromaDB",
+    "totalDocs": "Total des documents",
+    "collections": "Collections",
+    "embeddingModel": "Modèle d'embedding",
+    "ingest": "Ingestion de documents",
+    "dragDrop": "Glissez-déposez des fichiers ou collez du texte",
+    "pasteText": "Collez le texte du document...",
+    "addDocument": "Ajouter un document",
+    "collectionBrowser": "Navigateur de collections",
+    "searchTest": "Test de recherche sémantique",
+    "searchPlaceholder": "Entrez une requête de recherche sémantique...",
+    "search": "Rechercher",
+    "results": "Résultats",
+    "noResults": "Aucun résultat trouvé",
+    "score": "Score"
+  },
+  "database": {
+    "title": "Services de données locaux",
+    "subtitle": "État du magasin vectoriel RAG et du stockage local",
+    "refresh": "Actualiser",
+    "checking": "Vérification des services locaux…",
+    "localVolume": "Volume Docker local",
+    "ingestTitle": "Ajouter des connaissances au RAG",
+    "ingestHelp": "Le texte est vectorisé localement par ChromaDB et conservé dans son volume Docker persistant.",
+    "sourcePlaceholder": "Nom de la source",
+    "textPlaceholder": "Collez un runbook, une note Terraform ou un extrait de télémétrie (20 à 20 000 caractères)…",
+    "indexing": "Indexation locale…",
+    "add": "Ajouter à l’index RAG",
+    "indexed": "Document indexé. Total :",
+    "elkTitle": "Journaux ELK récents",
+    "noLogs": "Aucun journal Elasticsearch n’est disponible."
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "retry": "Réessayer",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "close": "Fermer",
+    "refresh": "Actualiser",
+    "noData": "Aucune donnée disponible",
+    "lastUpdated": "Dernière mise à jour",
+    "status": {
+      "active": "Actif",
+      "inactive": "Inactif",
+      "running": "En cours",
+      "stopped": "Arrêté",
+      "healthy": "Sain",
+      "degraded": "Dégradé",
+      "critical": "Critique"
+    },
+    "severity": {
+      "critical": "Critique",
+      "high": "Élevé",
+      "medium": "Moyen",
+      "low": "Faible",
+      "info": "Info"
+    }
+  }
+}
